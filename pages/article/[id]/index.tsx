@@ -1,10 +1,33 @@
 import { useRouter } from "next/router";
-
-const article = () => {
+import Link from "next/link";
+const article: React.FC<{
+  article: { id: string; title: string; body: string };
+}> = ({ article }) => {
   // const router = useRouter();
   // const { id } = router.query;
 
-  return <div>This is an article {id}</div>;
+  return (
+    <div>
+      <h1>{article.title}</h1>
+      <p>{article.body}</p>
+      <br />
+      <Link href="/">Go Back</Link>
+    </div>
+  );
+};
+
+export const getServerSideProps = async (context) => {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+  );
+
+  const article = await res.json();
+
+  return {
+    props: {
+      article,
+    },
+  };
 };
 
 export default article;
