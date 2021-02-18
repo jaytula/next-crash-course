@@ -36,3 +36,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Youtube Tutorial
 
 https://www.youtube.com/watch?v=mTz0GXj8NN0
+
+## Export a static site
+
+```shell
+# exports to out folder
+next build && next export
+
+# Install serve package globally
+npm i -g serve
+
+# Run server on port  8000
+serve -s out -p 8000
+```
