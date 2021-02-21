@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { isTargetLikeServerless } from "next/dist/next-server/server/config";
+import {server} from '../../../config'
 const article: React.FC<{
   article: { id: string; title: string; body: string };
 }> = ({ article }) => {
@@ -19,7 +19,7 @@ const article: React.FC<{
 
 export const getStaticProps = async (context) => {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+    `${server}/api/articles/${context.params.id}`
   );
 
   const article = await res.json();
@@ -32,7 +32,7 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+  const res = await fetch(`${server}/api/articles`);
 
   const articles = await res.json();
 
