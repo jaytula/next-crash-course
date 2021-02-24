@@ -1,9 +1,9 @@
 import Head from "next/head";
 
 const Meta: React.FC<{
-  title: string;
-  keywords: string;
-  description: string;
+  title?: string;
+  keywords?: string;
+  description?: string;
 }> = ({
   title = "WebDev Newz",
   keywords = "web development, programming",
